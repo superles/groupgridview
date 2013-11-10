@@ -177,6 +177,22 @@ class BootGroupGridView extends TbGridView {
             }
         }
         */
+        
+        /**
+         * add native property rowHtmlOptionsExpression
+         * example 'rowHtmlOptionsExpression'=>'array("id" => strtolower("$data->brand"))'
+         */
+        if($this->rowHtmlOptionsExpression!==null)
+        {
+            $data=$this->dataProvider->data[$row];
+            $options=$this->evaluateExpression($this->rowHtmlOptionsExpression,array('row'=>$row,'data'=>$data));
+            if(is_array($options))
+                $htmlOptions = $options;
+            $string='';
+            foreach ($htmlOptions as $name=>$value){
+                $string.=$name.'="'.(is_array($value)?implode(' ',$value):$value).'" ';
+            }
+        }
 
         // original CGridView code
         if($this->rowCssClassExpression!==null) 
@@ -185,7 +201,10 @@ class BootGroupGridView extends TbGridView {
             echo '<tr class="'.$this->evaluateExpression($this->rowCssClassExpression,array('row'=>$row,'data'=>$data)).'">';
         }
         else if(is_array($this->rowCssClass) && ($n=count($this->rowCssClass))>0)
-                echo '<tr class="'.$this->rowCssClass[$row%$n].'">';
+                /**
+                 * todo add more strict validation
+                 */
+                echo '<tr class="'.$this->rowCssClass[$row%$n].'" '.((isset($string)&&$string!="")?$string:"").'>';
             else
                 echo '<tr>';
 
