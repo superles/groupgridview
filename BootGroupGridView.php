@@ -198,7 +198,10 @@ class BootGroupGridView extends TbGridView {
         if($this->rowCssClassExpression!==null) 
         {
             $data=$this->dataProvider->data[$row];
-            echo '<tr class="'.$this->evaluateExpression($this->rowCssClassExpression,array('row'=>$row,'data'=>$data)).'">';
+                 /**
+                 * todo fixit
+                 */
+             echo '<tr class="'.$this->evaluateExpression($this->rowCssClassExpression,array('row'=>$row,'data'=>$data)).'" '.((isset($string)&&$string!="")?$string:"").'>';
         }
         else if(is_array($this->rowCssClass) && ($n=count($this->rowCssClass))>0)
                 /**
