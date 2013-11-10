@@ -7,8 +7,8 @@ Yii::import('bootstrap.widgets.TbGridView');
 *
 * @category       User Interface
 * @package        extensions
-* @author         Vitaliy Potapov <noginsk@rambler.ru>
-* @version        1.3
+* @author         Alexander Lesnichenko <admin@it-master.dp.ua>
+* @version        1.31
 */
 class BootGroupGridView extends TbGridView {
  //column values are merged independently
